@@ -1,6 +1,6 @@
 # For Bojro Edition: MIRA Assistant
 
-MIRA is a modular voice assistant capable of offline Speech-to-Text (Whisper), offline Intelligence (Llama 3 via LM Studio), and high-quality Text-to-Speech (Edge TTS).
+MIRA is a modular voice assistant capable of offline Speech-to-Text (Whisper) and high-quality Text-to-Speech (Edge TTS). For the "Brain," you can choose between **Google Gemini** (Online/Fast) or **LM Studio** (Offline/Private).
 
 ## 1. Prerequisites
 
@@ -20,32 +20,49 @@ MIRA is a modular voice assistant capable of offline Speech-to-Text (Whisper), o
 ## 2. Installation
 
 1.  Open your terminal inside the `MIRA` folder.
-2.  Install all required libraries using the requirements file:
+2.  Install all required libraries:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-    *This automatically installs Faster-Whisper, Edge-TTS, OpenAI, PyGame, and other dependencies.*
-
 ---
 
 ## 3. Audio Driver Troubleshooting (Windows)
 
-If you see an error related to `PyAudio` during the installation above, run these commands to fix the microphone driver:
+If you see an error related to `PyAudio` during installation, run these commands to fix the microphone driver:
 
 ```bash
 pip install pipwin
 pipwin install pyaudio
 
-## 4. Setup The Brain (LM Studio)
+## 4. Configuration: Choose Your Brain
+
+MIRA can run in two modes. Open `MIRA/brain.py` to switch between them.
+
+### Option A: Google Gemini (Online & Fast)
+*Best for speed and accuracy. Requires an internet connection.*
+
+1.  Get a free API Key from [Google AI Studio](https://aistudio.google.com/).
+2.  Open the `.env` file and paste your key:
+    ```ini
+    GEMINI_API_KEY=your_key_here
+    ```
+3.  **Edit `brain.py`**:
+    * **Uncomment** the Gemini section (remove `'''` quotes).
+    * **Comment out** the LM Studio section (add `'''` quotes).
+
+### Option B: LM Studio (Offline & Private)
+*Best for privacy. Runs 100% on your PC.*
 
 1.  Download & Install **[LM Studio](https://lmstudio.ai/)**.
-2.  Search for and download **Meta Llama 3 8B** (or any model you prefer).
-3.  Go to the **Local Server** tab (`<->` icon on the left).
-4.  Select your model at the top.
-5.  Click **Start Server** (Green Button).
-6.  Ensure it is running on **Port 1234**.
+2.  Download a model (e.g., **Meta Llama 3 8B**).
+3.  Go to the **Local Server** tab (`<->` icon).
+4.  Select your model and click **Start Server**.
+5.  Ensure it is running on **Port 1234**.
+6.  **Edit `brain.py`**:
+    * **Uncomment** the LM Studio section.
+    * **Comment out** the Gemini section.
 
 ---
 
