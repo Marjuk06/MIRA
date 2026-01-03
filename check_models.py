@@ -9,9 +9,9 @@ client = genai.Client(api_key=api_key)
 
 print("Checking available models...")
 try:
-    # Get the list of models valid for your key
+    
     for m in client.models.list():
-        # Only show models we can use for chat (generateContent)
+       
         if "generateContent" in m.supported_actions:
             print(f"- {m.name}")
             
